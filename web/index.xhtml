@@ -1,12 +1,27 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Toptan Ürün Satış Otomasyonu</title>
+        <title>Toptancı Satış OTOMASYON</title>
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <h:outputScript library="js" name="jquery-3.5.0.min.js" />
+        <h:outputScript library="js" name="bootstrap.min.js" />
+
     </h:head>
     <h:body>
                 <center> Web Sitemiz Yapım Aşamasındadır.... </center>
+                <h:form>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <h:commandButton styleClass="btn btn-primary" action="/Urun/liste" value="Ürün İşlemleri" />
+                        </li>
+                    </ul>
+                </div>
+                </nav>
+                </h:form>
     </h:body>
 </html>
-
