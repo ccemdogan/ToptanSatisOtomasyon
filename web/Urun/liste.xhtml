@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Listele</title>
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />
+        <h:outputScript library="js" name="jquery-3.5.0.min.js" />
+        <h:outputScript library="js" name="bootstrap.min.js" />
+
+    </h:head>
+    <h:body>
+        <h:form>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <h:commandButton styleClass="btn btn-primary" action="/Urun/liste" value="Ürün İşlemleri" />
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </h:form>
+        <h:form id="form-table">
+            <h:commandButton styleClass="btn btn-success" action="/Urun/ekle" value="Yeni Ürün Kaydı" />
+            <hr />
+            <pre>Page #{urunKontrol.sayfa} of #{urunKontrol.sayfaSayisi}</pre>
+            <div class="btn-group">
+                <h:commandButton action="#{urunKontrol.onceki()}" value="Önceki Sayfa" styleClass="btn btn-outline-dark">
+                    <f:ajax execute="@this" render="form-table"/>
+                </h:commandButton>
+                <h:commandButton action="#{urunKontrol.sonraki()}" value="Sonraki Sayfa" styleClass="btn btn-outline-dark">
+                    <f:ajax execute="@this" render="form-table"/>
+                </h:commandButton>
+            </div>
+            <h:dataTable class="table table-striped table-sm" value="#{urunKontrol.oku}" var="c">                
+                <h:column>
+                    <f:facet name="header"> Urun ID </f:facet>
+                        #{c.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> Urun Adı </f:facet>
+                        #{c.ad}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> Urun Turu </f:facet>
+                        #{c.tur}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> Stok </f:facet>
+                        #{c.stok}
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> Yonetim </f:facet>
+                    <h:commandButton styleClass="btn btn-warning btn-sm" action="#{urunKontrol.guncelleForm(c)}" value="Guncelle" />
+                    <h:commandButton onclick="return confirm('Kaydı Silmek İstediğinizden Emin Misiniz?')" styleClass="btn btn-danger btn-sm" action="#{urunKontrol.sil(c)}" value="Sil">
+                        <f:ajax execute="@this" render="form-table"/>
+                    </h:commandButton>
+
+                </h:column>                
+            </h:dataTable>
+        </h:form>
+
+    </h:body>
+</html>
+
