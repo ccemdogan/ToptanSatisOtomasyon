@@ -15,6 +15,7 @@ import java.io.*;
 import java.util.List;
 import javax.faces.bean.*;
 
+
 @ManagedBean
 @SessionScoped
 public class UrunKontrol implements Serializable {
