@@ -2,6 +2,7 @@ package Kontrol;
 
 import Dao.SaticiDAO;
 import Nesneler.Satici;
+import Nesneler.Satim;
 import java.io.*;
 import java.util.List;
 import javax.faces.bean.*;
@@ -27,6 +28,12 @@ public class SaticiKontrol implements Serializable {
         this.nesne = u;
         return "/Satici/satislar";
     }
+
+    public List<Satim> getSatisListe() {
+        return this.getDao().satisOku(nesne);
+    }
+
+
 
     public String guncelleForm(Satici u) {
         this.nesne = u;

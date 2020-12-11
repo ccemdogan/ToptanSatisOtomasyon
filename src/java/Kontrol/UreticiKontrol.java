@@ -1,6 +1,8 @@
 package Kontrol;
 
 import Dao.UreticiDAO;
+import Nesneler.Alim;
+
 import Nesneler.Uretici;
 import java.io.*;
 import java.util.List;
@@ -23,7 +25,13 @@ public class UreticiKontrol implements Serializable {
         return this.getDao().oku();
     }
     
-    
+    public String alisOku(Uretici u) {
+        this.nesne = u;
+        return "/Uretici/alislar";
+    }
+
+
+
     public String guncelleForm(Uretici u) {
         this.nesne = u;
         return "/Uretici/guncelle";

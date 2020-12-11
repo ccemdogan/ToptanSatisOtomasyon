@@ -80,8 +80,8 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header"> Cari/Satış </f:facet>
-                    <h:commandButton  styleClass="btn btn-success btn-sm"  value="Satışlar" />                                     
-                    <h:commandButton  styleClass="btn btn-primary btn-sm"  value="Cari" />         
+                    <h:commandButton  styleClass="btn btn-success btn-sm" action="#{saticiKontrol.satisOku(c)}" value="Satışlar" />                                     
+                    <h:commandButton  styleClass="btn btn-primary btn-sm" action="#{saticiKontrol.kasagirisOku(c)}" value="Cari" />         
                    
                 </h:column>
             </h:dataTable>

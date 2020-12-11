@@ -2,7 +2,7 @@
 package Dao;
 
 import Araclar.VTBaglanti;
-
+import Nesneler.Alim;
 import Nesneler.Uretici;
 
 import java.sql.ResultSet;
@@ -16,7 +16,31 @@ import java.util.List;
  */
 public class UreticiDAO extends VTBaglanti {
 
-    
+    public List<Alim> alisOku(Uretici a) {
+        List<Alim> liste = new ArrayList<>();
+        try {
+            Statement st = this.baglan().createStatement();
+            ResultSet rs = st.executeQuery("select * from alim where uretici_id=" + a.getId());
+
+            while (rs.next()) {
+                Alim tmp = new Alim();
+                tmp.setId(rs.getInt("id"));
+                tmp.setTarih(rs.getDate("tarih"));
+                tmp.setMiktar(rs.getInt("miktar"));
+                tmp.setFiyat(rs.getInt("fiyat"));
+                tmp.setUretici_Id(rs.getInt("uretici_id"));
+                tmp.setUrun_Id(rs.getInt("urun_id"));
+
+                liste.add(tmp);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return liste;
+    }
+
+   
 
     public String bul(int id) {
         Uretici q = null;
