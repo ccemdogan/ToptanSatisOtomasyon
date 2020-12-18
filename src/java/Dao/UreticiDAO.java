@@ -1,10 +1,9 @@
-
 package Dao;
 
 import Araclar.VTBaglanti;
 import Nesneler.Alim;
+import Nesneler.Kasacikis;
 import Nesneler.Uretici;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -40,7 +39,22 @@ public class UreticiDAO extends VTBaglanti {
         return liste;
     }
 
-   
+   public List<Kasacikis> kasaCikisOku(Uretici a) {
+        List<Kasacikis> liste = new ArrayList<>();
+        try {
+            Statement st = this.baglan().createStatement();
+            ResultSet rs = st.executeQuery("select * from kasacikis where uretici_id=" + a.getId());
+
+            while (rs.next()) {
+                Kasacikis tmp = new Kasacikis(rs.getInt("id"), rs.getInt("uretici_id"), rs.getInt("odeme"), rs.getDate("tarih"), rs.getString("odeme_sekli"));
+                liste.add(tmp);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return liste;
+    }
+
 
     public String bul(int id) {
         Uretici q = null;

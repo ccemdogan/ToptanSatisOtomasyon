@@ -2,6 +2,7 @@ package Kontrol;
 
 import Dao.UreticiDAO;
 import Nesneler.Alim;
+import Nesneler.Kasacikis;
 
 import Nesneler.Uretici;
 import java.io.*;
@@ -30,7 +31,18 @@ public class UreticiKontrol implements Serializable {
         return "/Uretici/alislar";
     }
 
+public List<Alim> getAlisListe() {
+        return this.getDao().alisOku(nesne);
+    }
 
+    public String kasaCikisOku(Uretici u) {
+        this.nesne = u;
+        return "/Uretici/cari";
+    }
+
+    public List<Kasacikis> getKasacikisListe() {
+        return this.getDao().kasaCikisOku(nesne);
+    }
 
     public String guncelleForm(Uretici u) {
         this.nesne = u;

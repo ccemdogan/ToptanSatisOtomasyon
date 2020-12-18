@@ -1,6 +1,7 @@
 package Kontrol;
 
 import Dao.SaticiDAO;
+import Nesneler.Kasagiris;
 import Nesneler.Satici;
 import Nesneler.Satim;
 import java.io.*;
@@ -33,7 +34,14 @@ public class SaticiKontrol implements Serializable {
         return this.getDao().satisOku(nesne);
     }
 
+public String kasagirisOku(Satici u) {
+        this.nesne = u;
+        return "/Satici/cari";
+    }
 
+    public List<Kasagiris> getKasagirisListe() {
+        return this.getDao().kasaGirisOku(nesne);
+    }
 
     public String guncelleForm(Satici u) {
         this.nesne = u;

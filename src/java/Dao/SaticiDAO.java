@@ -1,6 +1,7 @@
 package Dao;
 
 import Araclar.VTBaglanti;
+import Nesneler.Kasagiris;
 import Nesneler.Satici;
 import Nesneler.Satim;
 import java.sql.ResultSet;
@@ -35,7 +36,21 @@ public class SaticiDAO extends VTBaglanti {
         return liste;
     }
      
+public List<Kasagiris> kasaGirisOku(Satici a) {
+        List<Kasagiris> liste = new ArrayList<>();
+        try {
+            Statement st = this.baglan().createStatement();
+            ResultSet rs = st.executeQuery("select * from kasagiris where satici_id="+a.getId());
 
+            while (rs.next()) {
+                Kasagiris tmp = new Kasagiris(rs.getInt("id"), rs.getInt("satici_id"), rs.getInt("tahsilat"), rs.getDate("tarih"), rs.getString("tahsilat_sekli"));
+                liste.add(tmp);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return liste;
+    }
     
      public String bul(int id) {
         Satici q = null;
