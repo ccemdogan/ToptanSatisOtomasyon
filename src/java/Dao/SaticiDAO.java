@@ -100,6 +100,23 @@ public List<Kasagiris> kasaGirisOku(Satici a) {
         }
         return liste;
     }
+    
+    public List<Satici> rapor() {
+        List<Satici> liste = new ArrayList<>();
+        try {
+            Statement st = this.baglan().createStatement();
+            ResultSet rs = st.executeQuery("select * from satici order by borc desc");
+
+            while (rs.next()) {
+                Satici tmp = new Satici(rs.getInt("id"), rs.getString("ad"), rs.getString("adres"), rs.getString("tlf"), rs.getInt("borc"));
+                liste.add(tmp);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return liste;
+    }
+
 
     public void guncelle(Satici u) {
         try {

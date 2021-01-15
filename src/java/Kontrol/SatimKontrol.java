@@ -78,6 +78,10 @@ public class SatimKontrol implements Serializable {
     public List<Satim> getOku() {
         return this.getDao().oku(this.sayfa, this.kayitSayisi);
     }
+    
+        public List<Satim> getRapor() {
+        return this.getDao().rapor(this.sayfa, this.kayitSayisi);
+    }
 
     public String guncelleForm(Satim u) {
         this.nesne = u;

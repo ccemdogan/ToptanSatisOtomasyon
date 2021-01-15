@@ -25,6 +25,9 @@ public class UreticiKontrol implements Serializable {
     public List<Uretici> getOku() {
         return this.getDao().oku();
     }
+        public List<Uretici> getrapor() {
+        return this.getDao().rapor();
+    }
     
     public String alisOku(Uretici u) {
         this.nesne = u;

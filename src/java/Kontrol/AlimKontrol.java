@@ -77,6 +77,9 @@ public class AlimKontrol implements Serializable {
     public List<Alim> getOku() {
         return this.getDao().oku(this.sayfa,this.kayitSayisi);
     }
+        public List<Alim> getRapor() {
+        return this.getDao().rapor(this.sayfa,this.kayitSayisi);
+    }
 
     public String guncelleForm(Alim u) {
         this.nesne = u;

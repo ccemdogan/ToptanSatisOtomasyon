@@ -24,6 +24,9 @@ public class SaticiKontrol implements Serializable {
     public List<Satici> getOku() {
         return this.getDao().oku();
     }
+        public List<Satici> getRapor() {
+        return this.getDao().rapor();
+    }
 
     public String satisOku(Satici u) {
         this.nesne = u;

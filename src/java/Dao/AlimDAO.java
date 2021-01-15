@@ -47,6 +47,26 @@ public class AlimDAO extends VTBaglanti {
 
         return liste;
     }
+    public List<Alim> rapor(int syf, int kayitSys) {
+        List<Alim> liste = new ArrayList<>();
+        int start=(syf-1)*kayitSys;
+        try {
+            Statement st = this.baglan().createStatement();
+            
+            ResultSet rs = st.executeQuery("select urun_id,sum(miktar) as miktar from alim group by urun_id order by miktar desc limit "+start+" , "+kayitSys);
+            while (rs.next()) {
+                Alim tmp = new Alim();               
+                tmp.setMiktar(rs.getInt("miktar"));                             
+                tmp.setUrun_Id(rs.getInt("urun_id"));
+
+                liste.add(tmp);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return liste;
+    }
     
     public int say(){
         int sayi=0;

@@ -39,57 +39,52 @@
                         <li class="nav-item active">
                             <h:commandButton styleClass="btn btn-primary" action="/Kasacikis/liste" value="Ödeme" />
                         </li>
+
                         <li class="nav-item active">
                             <h:commandButton styleClass="btn btn-primary" action="/Merkez/liste" value="Merkez Kasa" />
                         </li>
+                           
                     </ul>
                 </div>
             </nav>
         </h:form>
         <h:form id="form-table">
-            <h:commandButton styleClass="btn btn-success" action="/Alim/ekle" value="Ürün Alımı" />
-            <h:commandButton styleClass="btn btn-success" action="/Alim/rapor" value="En Fazla Alım" />
+            <h:commandButton styleClass="btn btn-success" action="/Satici/ekle" value="Yeni Satıcı Kaydı" />
+            <h:commandButton styleClass="btn btn-success" action="/Satici/rapor" value="En Fazla Borcu Olan Satıcı" />
             <hr />
-            <pre>Page #{alimKontrol.sayfa} of #{alimKontrol.sayfaSayisi}</pre>
-            <div class="btn-group">
-                <h:commandButton action="#{alimKontrol.onceki()}" value="Önceki Sayfa" styleClass="btn btn-outline-dark">
-                    <f:ajax execute="@this" render="form-table"/>
-                </h:commandButton>
-                <h:commandButton action="#{alimKontrol.sonraki()}" value="Sonraki Sayfa" styleClass="btn btn-outline-dark">
-                    <f:ajax execute="@this" render="form-table"/>
-                </h:commandButton>
-            </div>
-            <h:dataTable class="table table-striped table-sm" value="#{alimKontrol.oku}" var="c">
+            <h:dataTable class="table table-striped table-sm" value="#{saticiKontrol.rapor}" var="c">
                 <h:column>
-                    <f:facet name="header"> Alım ID </f:facet>
+                    <f:facet name="header"> Satıcı ID </f:facet>
                         #{c.id}
                 </h:column>
                 <h:column>
-                    <f:facet name="header"> Üretici Adı </f:facet>
-                        #{alimKontrol.ureticiDao.bul(c.uretici_Id)}
+                    <f:facet name="header"> Satıcı Adı </f:facet>
+                        #{c.ad}
                 </h:column>
                 <h:column>
-                    <f:facet name="header"> Ürün Adı </f:facet>
-                        #{alimKontrol.urunDao.bul(c.urun_Id)}
+                    <f:facet name="header"> Adres </f:facet>
+                        #{c.adres}
                 </h:column>
                 <h:column>
-                    <f:facet name="header"> Tarih </f:facet>
-                        #{c.tarih}
+                    <f:facet name="header"> Telefon </f:facet>
+                        #{c.tlf}
                 </h:column>
                 <h:column>
-                    <f:facet name="header"> Miktar </f:facet>
-                        #{c.miktar}
-                </h:column>
-                <h:column>
-                    <f:facet name="header"> Fiyat </f:facet>
-                        #{c.fiyat}
+                    <f:facet name="header"> Borç </f:facet>
+                        #{c.borc}
                 </h:column>
                 <h:column>
                     <f:facet name="header"> Yonetim </f:facet>
-                    <h:commandButton styleClass="btn btn-warning btn-sm" actionListener="#{alimKontrol.onceSil(c)}" action="#{alimKontrol.guncelleForm(c)}" value="Guncelle" />
-                    <h:commandButton  onclick="return confirm('Kaydı Silmek İstediğinizden Emin Misiniz?')" styleClass="btn btn-danger btn-sm" action="#{alimKontrol.sil(c)}" value="Sil" >
-                        <f:ajax execute="@this" render="form-table"/>
+                    <h:commandButton styleClass="btn btn-warning btn-sm" action="#{saticiKontrol.guncelleForm(c)}" value="Guncelle" />
+                    <h:commandButton  onclick="return confirm('Kaydı Silmek İstediğinizden Emin Misiniz?')" styleClass="btn btn-danger btn-sm" action="#{saticiKontrol.sil(c)}" value="Sil">
+                    <f:ajax execute="@this" render="form-table"/>
                     </h:commandButton>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"> Cari/Satış </f:facet>
+                    <h:commandButton  styleClass="btn btn-success btn-sm" action="#{saticiKontrol.satisOku(c)}" value="Satışlar" />                                     
+                    <h:commandButton  styleClass="btn btn-primary btn-sm" action="#{saticiKontrol.kasagirisOku(c)}" value="Cari" />         
+                   
                 </h:column>
             </h:dataTable>
 

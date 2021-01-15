@@ -68,6 +68,26 @@ public class SatimDAO extends VTBaglanti {
         return liste;
     }
     
+        public List<Satim> rapor(int syf, int kayitSys) {
+        List<Satim> liste = new ArrayList<>();
+        int start=(syf-1)*kayitSys;
+        try {
+            Statement st = this.baglan().createStatement();
+            ResultSet rs = st.executeQuery("select urun_id,sum(miktar) as miktar from satim group by urun_id order by miktar desc limit "+start+" , "+kayitSys);
+
+            while (rs.next()) {
+                Satim tmp = new Satim();
+                tmp.setMiktar(rs.getInt("miktar"));
+                tmp.setUrun_Id(rs.getInt("urun_id"));
+
+                liste.add(tmp);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return liste;
+    }
      public int say(){
         int sayi=0;
         try {

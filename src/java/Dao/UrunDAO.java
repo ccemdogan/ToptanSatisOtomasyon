@@ -66,6 +66,25 @@ public class UrunDAO extends VTBaglanti {
         
     }
     
+    public List<Urun> rapor(int syf, int kayitSys){
+        List<Urun> liste=new ArrayList<>();
+        int start=(syf-1)*kayitSys;         
+        try {
+           
+            Statement st = this.baglan().createStatement();
+            ResultSet rs= st.executeQuery("select * from urun order by stok asc limit "+start+" , "+kayitSys);
+            
+            while (rs.next()){
+                Urun tmp= new Urun(rs.getInt("id"), rs.getString("ad"), rs.getString("tur"), rs.getInt("stok"));
+                liste.add(tmp);
+            }
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return liste;
+        
+    }
+    
      public List<Urun> oku1(){
         List<Urun> liste=new ArrayList<>();
         

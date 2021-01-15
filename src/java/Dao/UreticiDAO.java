@@ -103,6 +103,22 @@ public class UreticiDAO extends VTBaglanti {
         }
         return liste;
     }
+    public List<Uretici> rapor() {
+        List<Uretici> liste = new ArrayList<>();
+        try {
+            Statement st = this.baglan().createStatement();
+            ResultSet rs = st.executeQuery("select * from uretici order by alacak desc");
+
+            while (rs.next()) {
+                Uretici tmp = new Uretici(rs.getInt("id"), rs.getString("ad"), rs.getString("adres"), rs.getString("tlf"), rs.getInt("alacak"));
+                liste.add(tmp);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return liste;
+    }
+
 
     public void guncelle(Uretici u) {
         try {

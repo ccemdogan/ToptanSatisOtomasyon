@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Kontrol;
 
 /**
@@ -11,6 +6,7 @@ package Kontrol;
  */
 import Dao.UrunDAO;
 import Nesneler.Urun;
+import java.awt.event.ActionEvent;
 import java.io.*;
 import java.util.List;
 import javax.faces.bean.*;
@@ -26,6 +22,7 @@ public class UrunKontrol implements Serializable {
     private int sayfa = 1;
     private int kayitSayisi = 8;
     private int sayfaSayisi;
+
 
     public void sonraki() {
         if (this.sayfa == this.getSayfaSayisi()) {
@@ -77,7 +74,12 @@ public class UrunKontrol implements Serializable {
     public List<Urun> getOku() {
         return this.getDao().oku(sayfa, kayitSayisi);
     }
-
+    public List<Urun> getrapor(){  
+    return this.getDao().rapor(sayfa, kayitSayisi);
+    }
+    
+  
+    
     public String guncelleForm(Urun u) {
         this.nesne = u;
         return "/Urun/guncelle";
